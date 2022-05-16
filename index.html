@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div.dice{
+            float: left;;
+            width: 32px;
+            background: #F5F5F5;
+            border: #999 1px solid;
+            padding: 60px;
+            font-size: 50px;
+            text-align: center;
+            margin: 10px;
+            
+        }
+       
+        #winner{
+            text-align: center;
+            font-size: 40px;
+            
+        }
+        #roll{
+            padding: 10px;
+            margin-top: 200px;
+            cursor: pointer;
+            width: 200px;
+            background-color: black;
+            color: #fff;
+            border-radius: 5px;
+            
+        }
+    #member-1{
+        margin-left: 430px;
+    } 
+       
+    
+    </style>
+
+
+</head>
+<body>
+  
+    <div><h2 id="winner"></h2></div>
+   
+    <div id="member-1" class="dice">0</div>
+    <div id="member-2" class="dice">0</div>
+    <div id="member-3" class="dice">0</div>
+
+    <button id="roll" onclick="rollDice()">ROLL THE DICE</button>
+
+</body>
+</html>
+
+<script>
+    function rollDice(){
+        var die1 = document.getElementById("member-1");
+        var die2 = document.getElementById("member-2");
+        var die3 = document.getElementById("member-3");
+
+        var status = document.getElementById("winner");
+
+        var d1 = Math.floor(Math.random()*6)+1;
+        var d2 = Math.floor(Math.random()*6)+1;
+        var d3 = Math.floor(Math.random()*6)+1;
+
+        var diceTotal = d1 + d2;
+        die1.innerHTML = d1;
+        die2.innerHTML = d2;
+        die3.innerHTML = d3;
+
+        if((d1 > d2) && (d1 > d3) && (d2 < d3)){
+        status.innerHTML="member-1 is winner";
+        die1.style.background="green";
+        die3.style.background="yellow";
+        die2.style.background="red";
+
+        }else if(d2 > d1 && d2 > d3 && d1 < d3){
+        status.innerHTML="member-2 is winner";
+        die2.style.background="green";
+        die1.style.background="red";
+        die3.style.background="yellow";
+
+        }else if(d3 > d1 && d3 > d2 && d2 > d1){
+        status.innerHTML="member-3 is winner";
+        die3.style.background="green";
+        die2.style.background="yellow";
+        die1.style.background="red";
+
+        }else if(d2 > d1 && d2 > d3 && d3 < d1){
+        status.innerHTML="member-2 is winner";
+        die2.style.background="green";
+        die3.style.background="red";
+        die1.style.background="yellow";
+
+        }else if(d1 > d2 && d1 > d3 && d3 < d2){
+        status.innerHTML="member-1 is winner";
+        die2.style.background="yellow";
+        die3.style.background="red";
+        die1.style.background="green";
+
+        }else if(d3 > d2 && d3 > d1 && d1 > d2){
+        status.innerHTML="member-3 is winner";
+        die2.style.background="red";
+        die3.style.background="green";
+        die1.style.background="yellow";
+
+        }else if(d1 == d2){
+            status.innerHTML="Draw!";
+            die2.style.background="blue";
+            die1.style.background="blue";
+        }else if(d2 == d3){
+            status.innerHTML="Draw!";
+            die3.style.background="blue";
+            die2.style.background="blue";
+        }else if(d1 == d3){
+            status.innerHTML="Draw!";
+            die1.style.background="blue";
+            die3.style.background="blue";
+        }else{
+            die3.style.background="red";
+            die2.style.background="red";
+            die1.style.background="red";
+        }
+    }
+</script>
